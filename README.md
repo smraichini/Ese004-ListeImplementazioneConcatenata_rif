@@ -1,0 +1,1 @@
+# Ese004-ListeImplementazioneConcatenata_valore
