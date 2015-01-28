@@ -7,8 +7,22 @@
  * Return -1 if memory allocation fails.
  */
 int LLInsertAtBeginning(LLElement **first, int key) {
-    // TODO Implementation needed
-    return -1;
+    LLElement *new_element;
+    int allocation_of_memory=NULL;
+    new_element=(LLElement *)malloc(sizeof(LLElement));
+    if(new_element!=NULL)
+    {
+        new_element->next=*first;
+        new_element->key=key;
+        *first=new_element;
+        allocation_of_memory=0;   
+    }        
+    else
+    {
+      allocation_of_memory = -1;
+    }
+    
+    return allocation_of_memory;
 }
 
 /*
@@ -38,8 +52,14 @@ int LLInsertAtPosition(LLElement **first, int key, int position) {
  * Returns the size of the list.
  */
 int LLSize(LLElement *first) {
-    // TODO Implementation needed
-    return -1;
+    int size_of_list=0;
+    while(first!=NULL)
+    {
+        size_of_list++;
+        first=first->next;
+               
+    } 
+    return size_of_list;
 }
 
 /*
