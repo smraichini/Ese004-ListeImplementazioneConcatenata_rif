@@ -69,8 +69,25 @@ int LLSize(LLElement *first) {
  * Returns -1 if there is no key at the specified position
  */ 
 int LLGetKey(LLElement *first, int position, int *key) {
-    // TODO Implementation needed
-    return -1;
+    int key_state=NULL;
+    LLElement **slide;
+    int i=0;
+    slide=&first; 
+    while(i<position)
+    {
+        slide=&((*slide)->next);
+        i++;
+    }
+    (*slide)->key=*key;
+    if((*slide)->key!=NULL)
+    {
+        key_state=0;
+    }
+    else
+    {
+        key_state=-1;
+    }
+    return key_state;
 }
 
 /*
@@ -126,6 +143,14 @@ int LLRemoveAtPosition(LLElement **first, int position) {
  * Return -1 in case of emtpy list. 
  */
 int LLEmptyList(LLElement **first) {
-    // TODO Implementation needed
-    return -1;
+    int list_state=NULL;
+    if(*first!=NULL)
+    {
+        list_state=0;
+    }
+    else
+    {
+        list_state=-1;
+    }
+    return list_state;
 }
