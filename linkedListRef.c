@@ -78,8 +78,8 @@ int LLGetKey(LLElement *first, int position, int *key) {
         slide=&((*slide)->next);
         i++;
     }
-    (*slide)->key=*key;
-    if((*slide)->key!=NULL)
+    *key=(*slide)->key;
+    if(position>=LLSize(first))
     {
         key_state=0;
     }
@@ -106,11 +106,24 @@ int LLFindKey(LLElement *first, int key, int startPosition, int *position) {
  * Remove the first element of the list.
  * 
  * Returns 0 on success.
- * Returns -1 in csae of empty list.
+ * Returns -1 in case of empty list.
  */
-int LLRemoveFirst(LLElement **first) {
-    // TODO Implementation needed
-    return -1;
+int LLRemoveFirst(LLElement **first) 
+{
+    int state_of_list=-1;
+    if((*first)!=NULL)
+    {
+    LLElement *temp;
+    temp=*first;
+    *first=(*first)->next;
+    free(temp);
+    state_of_list=0;
+    }
+    else
+    {
+    state_of_list=-1;
+    }
+    return state_of_list;
 }
 
 /*
@@ -119,9 +132,28 @@ int LLRemoveFirst(LLElement **first) {
  * Returns 0 on success.
  * Returns -1 in csae of empty list.
  */
-int LLRemoveLast(LLElement **first) {
-    // TODO Implementation needed
-    return -1;
+int LLRemoveLast(LLElement **first) 
+{
+    int state_of_list=-1;
+    int i;
+    int dim=LLSize(*first);
+    if(*first!=NULL)
+    {
+        while(i<dim)
+        {
+         *first=(*first)->next;
+        }
+        
+        free((*first)->next);
+        (*first)->next=NULL;
+        state_of_list=0;
+    }
+    else
+    {
+    state_of_list=-1;
+    }
+    
+    return state_of_list;
 }
 
 /*
