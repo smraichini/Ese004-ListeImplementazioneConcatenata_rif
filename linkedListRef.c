@@ -31,8 +31,25 @@ int LLInsertAtBeginning(LLElement **first, int key) {
  * Return -1 if memory allocation fails.
  */
 int LLInsertAtEnd(LLElement **first, int key) {
-    // TODO Implementation needed
-    return -1;
+    LLElement *new;
+    int memory_allocation=-1;
+    new=(LLElement *)malloc(sizeof(LLElement));
+    if(new!=NULL)
+    {
+    while(*first!=NULL)
+    {
+        first=(&(*first)->next);
+    }
+    *first=new;
+    new->key=key;
+    new->next=NULL;
+    memory_allocation=0;
+    }
+    else
+    {
+        memory_allocation=-1;
+    }
+    return memory_allocation;
 }
 
 /*
@@ -135,17 +152,18 @@ int LLRemoveFirst(LLElement **first)
 int LLRemoveLast(LLElement **first) 
 {
     int state_of_list=-1;
-    int i;
+    int i=0;
     int dim=LLSize(*first);
     if(*first!=NULL)
     {
-        while(i<dim)
+        while(i<(dim-1))
         {
-         *first=(*first)->next;
+         first=&((*first)->next);
+         i++;
         }
         
-        free((*first)->next);
-        (*first)->next=NULL;
+        free((*first));
+        (*first)=NULL;
         state_of_list=0;
     }
     else
